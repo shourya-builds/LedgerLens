@@ -1,0 +1,6 @@
+transaction_id,transaction_date,amount,currency,counterparty,description
+TXN-1001,2026-10-01,12500.00,INR,Acme Retail,Invoice settlement
+TXN-1002,2026-10-01,2500.00,INR,Northwind,Invoice settlement
+TXN-1003,2026-10-02,999.99,INR,Contoso,Card settlement
+TXN-1004,2026-10-03,75000.00,INR,Globex,Large transfer
+

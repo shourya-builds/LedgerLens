@@ -1,0 +1,19 @@
+[project]
+name = "ledgerlens"
+version = "0.1.0"
+description = "Explainable financial reconciliation powered by Exasol"
+requires-python = ">=3.10"
+dependencies = [
+  "pandas>=2.0",
+  "streamlit>=1.35",
+  "plotly>=5.20",
+  "python-dotenv>=1.0",
+  "exa-py>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
