@@ -1,0 +1,6 @@
+transaction_id,transaction_date,amount,currency,counterparty,description
+TXN-1001,2026-10-01,12500.00,INR,Acme Retail,Posted invoice
+TXN-1002,2026-10-01,2500.00,INR,Northwind,Posted invoice
+TXN-1003,2026-10-03,1000.00,INR,Contoso,Settlement with rounding
+TXN-1005,2026-10-03,4500.00,INR,Initech,Ledger-only posting
+
