@@ -33,6 +33,12 @@ Copy-Item .env.example .env
 python scripts/load_sample_to_exasol.py
 ```
 
+For a dependency-free database smoke test, the same demo batch can be loaded with:
+
+```powershell
+wsl.exe -d Ubuntu -- bash -lc "exasol connect -k -f /mnt/c/Users/Shourya/Desktop/LedgerLens/sql/002_load_demo_batch.sql"
+```
+
 ## Exasol connection
 
 Copy `.env.example` to `.env` and set the local DSN, user, and password. The next implementation slice will add the loader that writes normalized records and reconciliation results into Exasol.
