@@ -5,8 +5,6 @@ description = "Explainable financial reconciliation powered by Exasol"
 requires-python = ">=3.10"
 dependencies = [
   "pandas>=2.0",
-  "streamlit>=1.35",
-  "plotly>=5.20",
   "python-dotenv>=1.0",
   "exa-py>=1.0",
 ]

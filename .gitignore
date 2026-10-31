@@ -3,4 +3,7 @@ __pycache__/
 .pytest_cache/
 .streamlit/secrets.toml
 .env
+web/node_modules/
+web/.next/
+src/ledgerlens.egg-info/
 
