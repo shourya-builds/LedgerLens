@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
 type Issue = { id: string; title: string; source: string; amount: string; risk: number; priority: "Critical" | "High" | "Medium" | "Low"; score: number; explanation: string; action: string };
 
@@ -55,7 +56,7 @@ export default function Home() {
 
   return (
     <main className="shell">
-      <aside className="sidebar"><div className="brand"><span className="brand-mark">L</span><span>LedgerLens</span></div><div className="workspace-switcher"><span className="workspace-avatar">AC</span><span><b>Acme Finance</b><small>Operations workspace</small></span><span className="chevron">⌄</span></div><nav className="nav-list" aria-label="Main navigation"><a className="nav-item active" href="#overview"><span>◈</span> Overview</a><a className="nav-item" href="#queue"><span>◒</span> Investigation queue <span className="nav-count">3</span></a><a className="nav-item" href="#root-causes"><span>⌁</span> Root causes</a><a className="nav-item" href="#sources"><span>⊞</span> Data sources</a></nav><div className="sidebar-bottom"><a className="nav-item" href="#settings"><span>⚙</span> Settings</a><div className="profile"><span className="profile-avatar">SS</span><span><b>Shourya Singh</b><small>Admin</small></span><span className="chevron">⌄</span></div></div></aside>
+      <aside className="sidebar"><div className="brand"><span className="brand-mark">L</span><span>LedgerLens</span></div><div className="workspace-switcher"><span className="workspace-avatar">AC</span><span><b>Acme Finance</b><small>Operations workspace</small></span><span className="chevron">⌄</span></div><nav className="nav-list" aria-label="Main navigation"><Link className="nav-item active" href="/"><span>◈</span> Overview</Link><Link className="nav-item" href="/queue"><span>◒</span> Investigation queue <span className="nav-count">3</span></Link><Link className="nav-item" href="/root-causes"><span>⌁</span> Root causes</Link><a className="nav-item" href="#sources"><span>⊞</span> Data sources</a></nav><div className="sidebar-bottom"><a className="nav-item" href="#settings"><span>⚙</span> Settings</a><div className="profile"><span className="profile-avatar">SS</span><span><b>Shourya Singh</b><small>Admin</small></span><span className="chevron">⌄</span></div></div></aside>
       <section className="content">
         <header className="topbar"><div><div className="eyebrow">FRIDAY, OCTOBER 31, 2026</div><h1>Good morning, Shourya</h1></div><div className="top-actions"><span className="live-pill"><span className="live-dot" /> Exasol connected</span><button className="icon-button" aria-label="Notifications">♢<span className="notification-dot" /></button><button className="help-button">?</button></div></header>
         <div className="page-intro"><div><p className="eyebrow accent">RECONCILIATION OVERVIEW</p><h2>Find what needs your attention.</h2><p className="subtitle">LedgerLens has reviewed 8 records across your bank and ledger sources.</p></div><button className="primary-button" onClick={() => setModalOpen(true)}>＋ New reconciliation</button></div>
