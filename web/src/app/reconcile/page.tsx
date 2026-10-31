@@ -3,11 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import PageFrame from "@/components/PageFrame";
-
-type ReconciliationResult = {
-  issues: Array<{ id: string; title: string; amount: string; priority: string; explanation: string }>;
-  stats: { total: number; matched: number; exceptions: number; atRisk: number };
-};
+import { reconciliationStorageKey, type ReconciliationResult } from "@/lib/reconciliation";
 
 export default function ReconcilePage() {
   const [bankFile, setBankFile] = useState<File | null>(null);
@@ -29,7 +25,11 @@ export default function ReconcilePage() {
     const response = await fetch("/api/reconciliation", { method: "POST", body: form });
     const data = await response.json();
     if (!response.ok) setError(data.error ?? "Reconciliation could not be completed.");
-    else setResult(data);
+    else {
+      window.localStorage.setItem(reconciliationStorageKey, JSON.stringify(data));
+      window.dispatchEvent(new Event("storage"));
+      setResult(data);
+    }
     setRunning(false);
   }
 
