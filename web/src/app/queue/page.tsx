@@ -1,17 +1,22 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PageFrame from "@/components/PageFrame";
 import { demoResult, loadLatestResult } from "@/lib/reconciliation";
 
 export default function QueuePage() {
   const [query, setQuery] = useState("");
   const [priority, setPriority] = useState("All");
-  const latest = useSyncExternalStore(
-    (callback) => { window.addEventListener("storage", callback); return () => window.removeEventListener("storage", callback); },
-    loadLatestResult,
-    () => demoResult,
-  );
+  const [latest, setLatest] = useState(demoResult);
+  useEffect(() => {
+    const refresh = () => setLatest(loadLatestResult());
+    const timer = window.setTimeout(refresh, 0);
+    window.addEventListener("storage", refresh);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("storage", refresh);
+    };
+  }, []);
   const issues = latest.issues;
 
   const filtered = useMemo(() => issues.filter((issue) => (priority === "All" || issue.priority === priority) && `${issue.id} ${issue.title} ${issue.source}`.toLowerCase().includes(query.toLowerCase())).sort((a, b) => b.risk - a.risk), [issues, priority, query]);

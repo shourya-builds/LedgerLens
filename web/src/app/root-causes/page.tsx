@@ -1,17 +1,22 @@
 "use client";
 
-import { useMemo, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PageFrame from "@/components/PageFrame";
 import { demoResult, loadLatestResult } from "@/lib/reconciliation";
 
 const colors = ["#ef8354", "#e6b85c", "#6a8caf", "#8d79a8"];
 
 export default function RootCausesPage() {
-  const result = useSyncExternalStore(
-    (callback) => { window.addEventListener("storage", callback); return () => window.removeEventListener("storage", callback); },
-    loadLatestResult,
-    () => demoResult,
-  );
+  const [result, setResult] = useState(demoResult);
+  useEffect(() => {
+    const refresh = () => setResult(loadLatestResult());
+    const timer = window.setTimeout(refresh, 0);
+    window.addEventListener("storage", refresh);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("storage", refresh);
+    };
+  }, []);
   const groups = useMemo(() => result.issues.slice().sort((a, b) => b.risk - a.risk).map((issue, index) => ({ ...issue, color: colors[index % colors.length] })), [result]);
   const topCause = groups[0];
 
