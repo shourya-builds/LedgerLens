@@ -1,0 +1,5 @@
+transaction_id,transaction_date,amount,currency,counterparty,description
+B-2001,2026-10-10,12000.00,INR,Acme Retail,Invoice settlement
+B-2002,2026-10-10,8500.00,INR,Northwind,Payment received
+B-2003,2026-10-11,49999.00,INR,Globex,Large transfer
+B-2004,2026-10-12,1250.00,INR,Contoso,Card settlement

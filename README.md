@@ -10,18 +10,18 @@ Explainable financial reconciliation and anomaly investigation powered by Exasol
 - Explainable reconciliation statuses and evidence text
 - Financial-impact-based investigation prioritization
 - Exasol schema for raw, normalized, reconciliation, and investigation data
-- Streamlit dashboard with sample data and CSV upload
+- Next.js web dashboard designed for Vercel deployment
 - Unit tests for the reconciliation engine
 
 ## Run locally
 
 ```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-py -m pip install -e ".[dev]"
-pytest
-streamlit run app.py
+cd web
+npm install
+npm run dev
 ```
+
+The web dashboard is available at `http://localhost:3000`.
 
 The dashboard runs with the included sample data even before Exasol is connected. Exasol is the intended analytical source of truth; use `sql/001_schema.sql` to create the MVP schema after the local deployment is available.
 
@@ -46,7 +46,7 @@ Copy `.env.example` to `.env` and set the local DSN, user, and password. The nex
 ## Project structure
 
 ```text
-app.py                         Streamlit dashboard
+web/                           Next.js + TypeScript dashboard for Vercel
 src/ledgerlens/reconcile.py    Core matching and prioritization logic
 src/ledgerlens/exasol.py       Exasol connection and result loader
 scripts/load_sample_to_exasol.py  Sample batch loader
