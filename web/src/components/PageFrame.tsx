@@ -8,6 +8,7 @@ export default function PageFrame({ title, eyebrow, description, children }: { t
   const pathname = usePathname();
   const links = [
     ["/", "◈", "Home"],
+    ["/reconcile", "＋", "New reconciliation"],
     ["/queue", "◒", "Investigation queue"],
     ["/root-causes", "⌁", "Root causes"],
   ];
