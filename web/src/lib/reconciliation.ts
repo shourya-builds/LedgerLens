@@ -25,13 +25,20 @@ export const demoIssues: LedgerIssue[] = [
 
 export const demoResult: ReconciliationResult = { issues: demoIssues, stats: { total: 8, matched: 5, exceptions: 3, atRisk: 80500 } };
 
+let cachedSerializedResult: string | null = null;
+let cachedResult: ReconciliationResult = demoResult;
+
 export function loadLatestResult(): ReconciliationResult {
   if (typeof window === "undefined") return demoResult;
   try {
     const stored = window.localStorage.getItem(reconciliationStorageKey);
     if (!stored) return demoResult;
+    if (stored === cachedSerializedResult) return cachedResult;
     const parsed = JSON.parse(stored) as ReconciliationResult;
-    return Array.isArray(parsed.issues) && parsed.stats ? parsed : demoResult;
+    if (!Array.isArray(parsed.issues) || !parsed.stats) return demoResult;
+    cachedSerializedResult = stored;
+    cachedResult = parsed;
+    return cachedResult;
   } catch {
     return demoResult;
   }
