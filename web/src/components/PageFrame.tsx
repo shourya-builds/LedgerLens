@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 export default function PageFrame({ title, eyebrow, description, children }: { title: string; eyebrow: string; description: string; children: ReactNode }) {
   const pathname = usePathname();
   const links = [
-    ["/", "◈", "Overview"],
+    ["/", "◈", "Home"],
     ["/queue", "◒", "Investigation queue"],
     ["/root-causes", "⌁", "Root causes"],
   ];
